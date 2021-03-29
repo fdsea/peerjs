@@ -332,7 +332,7 @@ export class Negotiator {
 
   private _removeExtmapAllowMixed(sdp: any): RTCSessionDescription {
     const { browserDetails } = webRTCAdapter;
-    if (browserDetails.browser === 'safari' && !!sdp && !!sdp.sdp && sdp.sdp.indexOf('\na=extmap-allow-mixed') !== -1) {
+    if (['safari', 'chrome'].indexOf(browserDetails.browser) !== -1 && !!sdp && !!sdp.sdp && sdp.sdp.indexOf('\na=extmap-allow-mixed') !== -1) {
       const _sdp = sdp.sdp.split('\n').filter(function (line) {
         return line.trim() !== 'a=extmap-allow-mixed';
       }).join('\n');
